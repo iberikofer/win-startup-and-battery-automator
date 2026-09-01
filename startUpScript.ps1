@@ -35,7 +35,7 @@ function Get-ScriptConfiguration {
 
 	# Default fallback configuration
 	return [PSCustomObject]@{
-		Settings = [PSCustomObject]@{
+		Settings    = [PSCustomObject]@{
 			InitialStartupDelaySeconds   = 15
 			BatteryPrePopupDelaySeconds  = 20
 			BatteryPopupCountdownSeconds = 60
@@ -45,7 +45,7 @@ function Get-ScriptConfiguration {
 			ShowToastNotifications       = $true
 			LogPath                      = "%TEMP%\SmartStartup_log.txt"
 		}
-		AcMode = [PSCustomObject]@{
+		AcMode      = [PSCustomObject]@{
 			AppsToLaunch = @()
 		}
 		BatteryMode = [PSCustomObject]@{
@@ -404,10 +404,6 @@ $global:popupPS = $null
 
 $global:batteryTimer = New-Object System.Timers.Timer
 $global:batteryTimer.AutoReset = $false # We trigger it manually for each step
-
-$popupCountdownSec = if ($global:config.Settings.BatteryPopupCountdownSeconds) { [int]$global:config.Settings.BatteryPopupCountdownSeconds } else { 60 }
-$snoozeMs = if ($global:config.Settings.SnoozeDurationMinutes) { [int]$global:config.Settings.SnoozeDurationMinutes * 60000 } else { 300000 }
-$prePopupMs = if ($global:config.Settings.BatteryPrePopupDelaySeconds) { [int]$global:config.Settings.BatteryPrePopupDelaySeconds * 1000 } else { 20000 }
 
 Unregister-Event -SourceIdentifier "BatteryTimer" -ErrorAction SilentlyContinue
 Register-ObjectEvent -InputObject $global:batteryTimer -EventName Elapsed -SourceIdentifier "BatteryTimer" -Action {
