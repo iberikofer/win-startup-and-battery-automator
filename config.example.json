@@ -1,0 +1,50 @@
+{
+  "Settings": {
+    "InitialStartupDelaySeconds": 15,
+    "BatteryPrePopupDelaySeconds": 20,
+    "BatteryPopupCountdownSeconds": 60,
+    "SnoozeDurationMinutes": 5,
+    "ManageBluetooth": true,
+    "ManageVisualEffects": true,
+    "ShowToastNotifications": true,
+    "LogPath": "%TEMP%\\SmartStartup_log.txt"
+  },
+  "AcMode": {
+    "AppsToLaunch": [
+      {
+        "Name": "Example App",
+        "Path": "C:\\Program Files\\ExampleApp\\app.exe",
+        "Args": "--silent",
+        "Type": "Exe",
+        "ProcessName": "app",
+        "RunAsUser": false,
+        "MinimizeToTray": false
+      },
+      {
+        "Name": "Example UWP App",
+        "Path": "shell:AppsFolder\\PackageFamilyName!App",
+        "Args": "",
+        "Type": "UWP",
+        "ProcessName": "ExampleUWP",
+        "RunAsUser": false,
+        "MinimizeToTray": false
+      },
+      {
+        "Name": "Example Tray App",
+        "Path": "%APPDATA%\\ExampleTray\\trayapp.exe",
+        "Args": "-startintray",
+        "Type": "Exe",
+        "ProcessName": "trayapp",
+        "RunAsUser": true,
+        "MinimizeToTray": true
+      }
+    ]
+  },
+  "BatteryMode": {
+    "ProcessesToClose": [
+      "*example*",
+      "*trayapp*"
+    ],
+    "GracefulCloseTimeoutSeconds": 3
+  }
+}
