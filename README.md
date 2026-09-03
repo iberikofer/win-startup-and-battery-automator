@@ -1,6 +1,6 @@
 # ⚡ Windows Startup & Battery Automator 🔋
 
-An author-crafted smart automation script for Windows 10/11 that dynamically adapts your system configuration, visual effects, and background applications depending on the current power source (**AC Power 🔌** vs **Battery Power 🔋**).
+A custom smart automation script for Windows 10/11 that dynamically adapts your system configuration, visual effects, and background applications depending on the current power source (**AC Power 🔌** vs **Battery Power 🔋**).
 
 ---
 
