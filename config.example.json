@@ -3,47 +3,67 @@
     "InitialStartupDelaySeconds": 15,
     "BatteryPrePopupDelaySeconds": 20,
     "BatteryPopupCountdownSeconds": 60,
+    "AcPopupCountdownSeconds": 60,
     "SnoozeDurationMinutes": 5,
-    "ManageBluetooth": true,
-    "ManageVisualEffects": true,
-    "ShowToastNotifications": true,
+    "AcBrightness": 70,
+    "BatteryBrightness": 30,
+    "AcRefreshRate": 144,
+    "BatteryRefreshRate": 60,
     "LogPath": "%TEMP%\\SmartStartup_log.txt"
+  },
+  "Features": {
+    "Bluetooth": false,
+    "VisualEffects": true,
+    "DisplayBrightness": true,
+    "DisplayRefreshRate": true,
+    "ToastNotifications": true,
+    "AcLaunchPopup": true,
+    "SkipAcPopupOnBoot": true,
+    "BatteryWarningPopup": true,
+    "LaunchAppsOnAc": true,
+    "CloseAppsOnBattery": true
   },
   "AcMode": {
     "AppsToLaunch": [
       {
-        "Name": "Example App",
-        "Path": "C:\\Program Files\\ExampleApp\\app.exe",
-        "Args": "--silent",
+        "Name": "Example Background Utility",
+        "Path": "C:\\Program Files\\ExampleApp\\ExampleApp.exe",
+        "Args": "",
         "Type": "Exe",
-        "ProcessName": "app",
+        "ProcessName": "ExampleApp",
         "RunAsUser": false,
-        "MinimizeToTray": false
+        "MinimizeToTray": false,
+        "Enabled": true
       },
       {
-        "Name": "Example UWP App",
-        "Path": "shell:AppsFolder\\PackageFamilyName!App",
+        "Name": "Example Windows Store App",
+        "Path": "shell:AppsFolder\\PackageFamilyName_12345!App",
         "Args": "",
         "Type": "UWP",
-        "ProcessName": "ExampleUWP",
+        "ProcessName": "ExampleStoreAppHost",
         "RunAsUser": false,
-        "MinimizeToTray": false
+        "MinimizeToTray": true,
+        "Enabled": true
       },
       {
-        "Name": "Example Tray App",
-        "Path": "%APPDATA%\\ExampleTray\\trayapp.exe",
+        "Name": "Example Tray Messenger",
+        "Path": "C:\\Users\\<Username>\\AppData\\Local\\Programs\\ExampleMessenger\\ExampleMessenger.exe",
         "Args": "-startintray",
         "Type": "Exe",
-        "ProcessName": "trayapp",
+        "ProcessName": "ExampleMessenger",
         "RunAsUser": true,
-        "MinimizeToTray": true
+        "MinimizeToTray": true,
+        "Enabled": false
       }
     ]
   },
   "BatteryMode": {
     "ProcessesToClose": [
-      "*example*",
-      "*trayapp*"
+      "*ExampleApp*",
+      "*ExampleStoreApp*",
+      "*heavy_process*",
+      "*wallpaper*",
+      "*game_launcher*"
     ],
     "GracefulCloseTimeoutSeconds": 3
   }
